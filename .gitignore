@@ -9,6 +9,7 @@ dist/
 .scratch/
 .qoder/
 .staging-creatoros/
+.staging-hermes/
 02_Profiles/
 creator-os-pilot/
 creator-os-site/
