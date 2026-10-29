@@ -1,190 +1,89 @@
-# ND-cognitive-OS
-workflow
-nd-cognitive-os/architecture.md
-ND COGNITIVE OS — SYSTEM ARCHITECTURE (v1.1)
-A cognitive modeling system for non‑linear thinkers and neurodivergent minds.
+# ND Cognitive OS
 
-A. SYSTEM OVERVIEW
-Purpose
-A system that helps users understand:
+**A Personal AI for neurodivergent minds.** Built for the [Nebius x NVIDIA Global AI Hackathon](https://nebiusglobalaihackathon.devpost.com/) — **Personal AI track**.
 
-how they think
+## What it does
 
-how they regulate
+ND Cognitive OS tracks your cognitive state (flow, overwhelmed, scattered, hyperfocus, etc.), detects patterns over time, and generates **personalized insights** using NVIDIA Nemotron via Nebius Token Factory.
 
-how they create
+Core philosophy: **the logic is rule-based, local, and private.** AI is an optional enhancement layer that interprets anonymized pattern summaries — never raw personal data.
 
-how they make decisions
+### Key Features
 
-how they enter flow
+- **State Machine** — tracks 8 cognitive states with energy/sensory dimensions
+- **Pattern Engine** — detects overwhelm loops, flow triggers, burnout precursors
+- **Cognitive Map** — builds a longitudinal picture of how your mind works
+- **SPARK Assessment** — profiles your cognitive style
+- **Cognitive Insight** (Nemotron-powered) — explains your patterns in warm, plain language with one actionable suggestion
 
-how they recover
+## How it uses NVIDIA + Nebius
 
-This is not productivity.
-This is cognitive infrastructure.
+| Component | Role |
+|-----------|------|
+| **NVIDIA Nemotron-3.5-Lightning** | Generates personalized cognitive insights from anonymized state data |
+| **Nebius Token Factory** | Hosts and serves the Nemotron model via OpenAI-compatible API |
+| **Persistent local memory** | State + patterns stored locally (Zustand + localStorage), never leaving the device |
+| **On-demand AI calls** | Only calls Nemotron when user clicks "Generate Insight" — no background API usage |
 
-B. CORE LAYERS
-1. Profile Layer
-Cognitive style
+### API Call Flow
 
-Attention pattern
+```
+User clicks "Generate Insight"
+  → buildInsightContext() creates anonymized summary (state, patterns, energy)
+  → POST /api/tokenfactory/chat/completions (Vite plugin or Vercel serverless)
+  → Nebius Token Factory runs Nemotron-3.5-Lightning
+  → Insight returned and displayed (thinking preamble stripped)
+```
 
-Sensory profile
+## Setup
 
-Emotional regulation pattern
+```bash
+# Clone
+git clone <repo-url>
+cd nd-cognitive-os
 
-Executive tendencies
+# Install
+npm install
 
-Strengths
+# Configure API key (get from https://tokenfactory.nebius.com)
+echo "TOKEN_FACTORY_KEY=your_key_here" > .env
 
-Challenges
+# Run dev server (port 3001)
+npm run dev
 
-2. Cognitive Map Layer
-State tracking
+# Build for production
+npm run build
 
-Pattern mapping
+# Test
+npm test
+```
 
-Trigger detection
+### Environment Variables
 
-Recovery conditions
+| Variable | Purpose | Required |
+|----------|---------|----------|
+| `TOKEN_FACTORY_KEY` | Nebius Token Factory API key | Yes (for Insight feature) |
 
-Energy cycles
+Without the key, all rule-based features work fine — only the AI Insight button is disabled.
 
-Thinking modes
+## Tech Stack
 
-3. Adaptive Toolkit Layer
-Tools recommended based on the cognitive map:
+- React 18 + Zustand 4 (state management)
+- Vite 5 (build tooling)
+- Tailwind CSS (styling)
+- Vitest (testing)
+- Nebius Token Factory / NVIDIA Nemotron-3.5-Lightning (AI insights)
+- Deployed on Vercel (serverless function proxies API key)
 
-grounding
+## Hackathon Entry Details
 
-sensory
+- **Track**: Personal AI
+- **Model**: NVIDIA Nemotron-3.5-Lightning via Nebius Token Factory
+- **Privacy-first**: Only anonymized state summaries sent to AI. No PII, no raw data.
+- **Always-on memory**: Cognitive state persists across sessions (localStorage + PostgreSQL via Hermes integration)
+- **Reusable skills**: Rule-based engines (state machine, pattern detector) work without AI; Nemotron adds interpretation layer on top
+- **User control**: All data local-first, AI is opt-in per-request
 
-attention
+## License
 
-planning
-
-creative
-
-regulation
-
-4. Workflow Generator Layer
-Generates workflows based on:
-
-cognitive style
-
-current state
-
-energy
-
-sensory environment
-
-project type
-
-5. Pattern Engine Layer
-Detects:
-
-recurring states
-
-overwhelm loops
-
-flow triggers
-
-burnout precursors
-
-sensory overload patterns
-
-Includes inverted search:
-“What’s missing?”
-
-6. Companion Layer
-Conversational interface that:
-
-reflects patterns
-
-explains states
-
-suggests adjustments
-
-helps regulate
-
-helps plan
-
-7. Personal OS Layer
-Outputs:
-
-routines
-
-environment design
-
-project structures
-
-creative cycles
-
-sensory management
-
-emotional navigation
-
-C. MODULES (MVP)
-Module 1 — Emotional Navigator
-Track emotional states
-
-Track triggers
-
-Track regulation strategies
-
-Output: emotional map + recommended actions
-
-Module 2 — Sensory Check‑In
-Track sensory load
-
-Track environment
-
-Output: sensory profile + environment suggestions
-
-Module 3 — Discoveries
-Capture insights
-
-Capture patterns
-
-Capture realizations
-
-Output: cognitive uploading material
-
-Module 4 — Pattern Engine (Basic)
-Detect simple patterns
-
-Detect repeated states
-
-Detect cycles
-
-Module 5 — Recommendations (Basic)
-Suggest tools
-
-Suggest workflows
-
-Suggest adjustments
-
-D. TECHNICAL IMPLEMENTATION
-Frontend
-React
-
-Zustand or Jotai
-
-Tailwind CSS
-
-Data
-JSON-based logs
-
-LocalStorage persistence
-
-Logic
-patternEngine.js
-
-stateMachine.js
-
-cognitiveMap.js
-
-AI Integration
-Claude Code for building
-
-OpenHuman for companion layer (later)
+MIT — see [LICENSE](LICENSE)

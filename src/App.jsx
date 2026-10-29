@@ -5,6 +5,7 @@ import SensoryCheckIn from './components/SensoryCheckIn/SensoryCheckIn';
 import Discoveries from './components/Discoveries/Discoveries';
 import Recommendations from './components/Recommendations/Recommendations';
 import PatternEngine from './components/PatternEngine/PatternEngine';
+import CognitiveInsight from './components/CognitiveInsight/CognitiveInsight';
 import SPARKAssessment from './components/SPARK/SPARKAssessment';
 import SPARKResults from './components/SPARK/SPARKResults';
 import Settings from './components/Settings/Settings';
@@ -19,6 +20,7 @@ const MODULES = {
   discoveries: Discoveries,
   recommendations: Recommendations,
   patterns: PatternEngine,
+  insight: CognitiveInsight,
   spark: SPARKAssessment,
   sparkResults: SPARKResults,
   settings: Settings,

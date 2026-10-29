@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { id: 'sensory', label: 'Sensory', icon: '◎' },
   { id: 'discoveries', label: 'Discoveries', icon: '✧' },
   { id: 'patterns', label: 'Patterns', icon: '⬡' },
+  { id: 'insight', label: 'Insight', icon: '◬' },
   { id: 'recommendations', label: 'Guidance', icon: '⟐' },
   { id: 'spark', label: 'SPARK', icon: '◇' },
   { id: 'sparkResults', label: 'Results', icon: '★' },

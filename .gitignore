@@ -1,5 +1,18 @@
 node_modules/
 dist/
 .env
+.env.local
 *.log
 .DS_Store
+
+# Private working directories - never publish
+.scratch/
+.qoder/
+.staging-creatoros/
+02_Profiles/
+creator-os-pilot/
+creator-os-site/
+indigos-deck/
+*.zip
+sleepstudy.html
+__pycache__/
