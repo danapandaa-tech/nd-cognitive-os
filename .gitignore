@@ -16,3 +16,7 @@ indigos-deck/
 *.zip
 sleepstudy.html
 __pycache__/
+
+.vercel
+
+.vercel/
